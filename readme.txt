@@ -14,3 +14,7 @@ There are three files in this repo.
 
 3. assignment.html 
   Sample result in html format for reference.
+
+
+Note: please use your own token in code
+"Authorization":"Bearer  <token>"
