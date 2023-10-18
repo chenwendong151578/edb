@@ -13993,7 +13993,7 @@ Sun</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -14010,7 +14010,7 @@ Sun</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -14041,7 +14041,7 @@ Sun</p>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Please Enter Number of Months you want to retrieve data:6
-2023-04-18T11:04:55.284099
+2023-04-18T20:33:23.993169
 </pre>
 </div>
 </div>
@@ -14053,7 +14053,7 @@ Sun</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#get all commit data page by page with default 100 per page,filter committer information</span>
@@ -14061,18 +14061,19 @@ Sun</p>
 <span class="n">committer_info</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">while</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">param</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;per_page&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="s2">&quot;since&quot;</span><span class="p">:</span> <span class="n">since</span><span class="p">,</span> <span class="s2">&quot;page&quot;</span><span class="p">:</span><span class="n">page</span><span class="p">}</span>
-    <span class="n">header</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span><span class="s2">&quot;Bearer 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&quot;</span><span class="p">}</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span><span class="s2">&quot;Bearer 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&quot;</span><span class="p">}</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/repos/apache/airflow/commits&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">param</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
     <span class="n">json_result</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
     <span class="n">result_count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">json_result</span><span class="p">)</span>
     <span class="c1">#print(result_count)</span>
+    <span class="k">for</span> <span class="n">committer</span> <span class="ow">in</span> <span class="n">json_result</span><span class="p">:</span>
+        <span class="c1">#here i retrieve commit author information</span>
+        <span class="n">committer_info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">committer</span><span class="p">[</span><span class="s2">&quot;commit&quot;</span><span class="p">][</span><span class="s2">&quot;author&quot;</span><span class="p">])</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="n">result_count</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">):</span>
         <span class="k">break</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">page</span><span class="o">=</span><span class="n">page</span><span class="o">+</span><span class="mi">1</span>
-    <span class="k">for</span> <span class="n">committer</span> <span class="ow">in</span> <span class="n">json_result</span><span class="p">:</span>
-        <span class="c1">#here i retrieve commit author information</span>
-        <span class="n">committer_info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">committer</span><span class="p">[</span><span class="s2">&quot;commit&quot;</span><span class="p">][</span><span class="s2">&quot;author&quot;</span><span class="p">])</span>
 
 <span class="c1"># convert data into data frame</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">committer_info</span><span class="p">)</span>
@@ -14088,7 +14089,7 @@ Sun</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load the data into data frame</span>
@@ -14103,7 +14104,7 @@ Sun</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find top 5 committers ranked by count of commits and their number of commits</span>
@@ -14129,8 +14130,8 @@ Sun</p>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Top 5 committer base on commit count:
- Jarek Potiuk       334
-Hussein Awala      190
+ Jarek Potiuk       368
+Hussein Awala      194
 Miroslav Šedivý    119
 Andrey Anshin       81
 Wei Lee             71
@@ -14146,7 +14147,7 @@ Name: name, dtype: int64
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#For the ingested commits, determine the committer with the longest commit streak</span>
@@ -14175,7 +14176,7 @@ Name: name, dtype: int64
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>User Jarek Potiuk has longest commit streak 14987966000000000 nanoseconds
+<pre>User Jarek Potiuk has longest commit streak 15720822000000000 nanoseconds
 </pre>
 </div>
 </div>
@@ -14187,7 +14188,7 @@ Name: name, dtype: int64
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#generate a heatmap of number of commits count by all users by day of the week and by 3 hour blocks</span>
@@ -14210,7 +14211,7 @@ Name: name, dtype: int64
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[55]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
 
 
@@ -14245,12 +14246,44 @@ Name: name, dtype: int64
       <th>0</th>
       <td>Jarek Potiuk</td>
       <td>jarek@potiuk.com</td>
+      <td>2023-10-18 10:54:16+00:00</td>
+      <td>Wednesday</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Przemek Więch</td>
+      <td>pwiech@gmail.com</td>
+      <td>2023-10-18 10:25:21+00:00</td>
+      <td>Wednesday</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VladaZakharova</td>
+      <td>80038284+VladaZakharova@users.noreply.github.com</td>
+      <td>2023-10-18 08:45:22+00:00</td>
+      <td>Wednesday</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jarek Potiuk</td>
+      <td>jarek@potiuk.com</td>
+      <td>2023-10-18 08:08:57+00:00</td>
+      <td>Wednesday</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Jarek Potiuk</td>
+      <td>jarek@potiuk.com</td>
       <td>2023-10-17 22:32:36+00:00</td>
       <td>Tuesday</td>
       <td>22</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>5</th>
       <td>Jarek Potiuk</td>
       <td>jarek@potiuk.com</td>
       <td>2023-10-17 22:13:23+00:00</td>
@@ -14258,7 +14291,7 @@ Name: name, dtype: int64
       <td>22</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>6</th>
       <td>Raphaël Vandon</td>
       <td>vandonr@amazon.com</td>
       <td>2023-10-17 22:10:12+00:00</td>
@@ -14266,7 +14299,7 @@ Name: name, dtype: int64
       <td>22</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>7</th>
       <td>dependabot[bot]</td>
       <td>49699333+dependabot[bot]@users.noreply.github.com</td>
       <td>2023-10-17 20:23:35+00:00</td>
@@ -14274,7 +14307,7 @@ Name: name, dtype: int64
       <td>20</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>8</th>
       <td>dependabot[bot]</td>
       <td>49699333+dependabot[bot]@users.noreply.github.com</td>
       <td>2023-10-17 20:19:35+00:00</td>
@@ -14282,7 +14315,7 @@ Name: name, dtype: int64
       <td>20</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>9</th>
       <td>D. Ferruzzi</td>
       <td>ferruzzi@amazon.com</td>
       <td>2023-10-17 20:18:42+00:00</td>
@@ -14290,7 +14323,7 @@ Name: name, dtype: int64
       <td>20</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>10</th>
       <td>Niko Oliveira</td>
       <td>onikolas@amazon.com</td>
       <td>2023-10-17 18:28:29+00:00</td>
@@ -14298,7 +14331,7 @@ Name: name, dtype: int64
       <td>18</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>11</th>
       <td>Vincent</td>
       <td>97131062+vincbeck@users.noreply.github.com</td>
       <td>2023-10-17 18:15:01+00:00</td>
@@ -14306,7 +14339,7 @@ Name: name, dtype: int64
       <td>18</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>12</th>
       <td>Jonny Fuller</td>
       <td>mr.waffles@gmail.com</td>
       <td>2023-10-17 17:58:52+00:00</td>
@@ -14314,7 +14347,7 @@ Name: name, dtype: int64
       <td>17</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>13</th>
       <td>Vincent</td>
       <td>97131062+vincbeck@users.noreply.github.com</td>
       <td>2023-10-17 16:43:09+00:00</td>
@@ -14322,44 +14355,12 @@ Name: name, dtype: int64
       <td>16</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>14</th>
       <td>Andrey Anshin</td>
       <td>Andrey.Anshin@taragol.is</td>
       <td>2023-10-16 21:18:37+00:00</td>
       <td>Monday</td>
       <td>21</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>ellisms</td>
-      <td>114107920+ellisms@users.noreply.github.com</td>
-      <td>2023-10-16 20:29:05+00:00</td>
-      <td>Monday</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Mike Mwanje</td>
-      <td>mwanjemike767@gmail.com</td>
-      <td>2023-10-16 20:27:18+00:00</td>
-      <td>Monday</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Vincent</td>
-      <td>97131062+vincbeck@users.noreply.github.com</td>
-      <td>2023-10-16 19:09:20+00:00</td>
-      <td>Monday</td>
-      <td>19</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>vatsrahul1001</td>
-      <td>43964496+vatsrahul1001@users.noreply.github.com</td>
-      <td>2023-10-16 16:14:42+00:00</td>
-      <td>Monday</td>
-      <td>16</td>
     </tr>
   </tbody>
 </table>
@@ -14375,7 +14376,7 @@ Name: name, dtype: int64
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#3 hour block column</span>
@@ -14417,7 +14418,7 @@ Name: name, dtype: int64
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[57]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
 
 
@@ -14453,13 +14454,49 @@ Name: name, dtype: int64
       <th>0</th>
       <td>Jarek Potiuk</td>
       <td>jarek@potiuk.com</td>
+      <td>2023-10-18 10:54:16+00:00</td>
+      <td>Wednesday</td>
+      <td>10</td>
+      <td>09-12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Przemek Więch</td>
+      <td>pwiech@gmail.com</td>
+      <td>2023-10-18 10:25:21+00:00</td>
+      <td>Wednesday</td>
+      <td>10</td>
+      <td>09-12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VladaZakharova</td>
+      <td>80038284+VladaZakharova@users.noreply.github.com</td>
+      <td>2023-10-18 08:45:22+00:00</td>
+      <td>Wednesday</td>
+      <td>8</td>
+      <td>06-09</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jarek Potiuk</td>
+      <td>jarek@potiuk.com</td>
+      <td>2023-10-18 08:08:57+00:00</td>
+      <td>Wednesday</td>
+      <td>8</td>
+      <td>06-09</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Jarek Potiuk</td>
+      <td>jarek@potiuk.com</td>
       <td>2023-10-17 22:32:36+00:00</td>
       <td>Tuesday</td>
       <td>22</td>
       <td>21-00</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>5</th>
       <td>Jarek Potiuk</td>
       <td>jarek@potiuk.com</td>
       <td>2023-10-17 22:13:23+00:00</td>
@@ -14468,7 +14505,7 @@ Name: name, dtype: int64
       <td>21-00</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>6</th>
       <td>Raphaël Vandon</td>
       <td>vandonr@amazon.com</td>
       <td>2023-10-17 22:10:12+00:00</td>
@@ -14477,7 +14514,7 @@ Name: name, dtype: int64
       <td>21-00</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>7</th>
       <td>dependabot[bot]</td>
       <td>49699333+dependabot[bot]@users.noreply.github.com</td>
       <td>2023-10-17 20:23:35+00:00</td>
@@ -14486,7 +14523,7 @@ Name: name, dtype: int64
       <td>18-21</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>8</th>
       <td>dependabot[bot]</td>
       <td>49699333+dependabot[bot]@users.noreply.github.com</td>
       <td>2023-10-17 20:19:35+00:00</td>
@@ -14495,7 +14532,7 @@ Name: name, dtype: int64
       <td>18-21</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>9</th>
       <td>D. Ferruzzi</td>
       <td>ferruzzi@amazon.com</td>
       <td>2023-10-17 20:18:42+00:00</td>
@@ -14504,7 +14541,7 @@ Name: name, dtype: int64
       <td>18-21</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>10</th>
       <td>Niko Oliveira</td>
       <td>onikolas@amazon.com</td>
       <td>2023-10-17 18:28:29+00:00</td>
@@ -14513,7 +14550,7 @@ Name: name, dtype: int64
       <td>18-21</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>11</th>
       <td>Vincent</td>
       <td>97131062+vincbeck@users.noreply.github.com</td>
       <td>2023-10-17 18:15:01+00:00</td>
@@ -14522,7 +14559,7 @@ Name: name, dtype: int64
       <td>18-21</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>12</th>
       <td>Jonny Fuller</td>
       <td>mr.waffles@gmail.com</td>
       <td>2023-10-17 17:58:52+00:00</td>
@@ -14531,7 +14568,7 @@ Name: name, dtype: int64
       <td>15-18</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>13</th>
       <td>Vincent</td>
       <td>97131062+vincbeck@users.noreply.github.com</td>
       <td>2023-10-17 16:43:09+00:00</td>
@@ -14540,49 +14577,13 @@ Name: name, dtype: int64
       <td>15-18</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>14</th>
       <td>Andrey Anshin</td>
       <td>Andrey.Anshin@taragol.is</td>
       <td>2023-10-16 21:18:37+00:00</td>
       <td>Monday</td>
       <td>21</td>
       <td>21-00</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>ellisms</td>
-      <td>114107920+ellisms@users.noreply.github.com</td>
-      <td>2023-10-16 20:29:05+00:00</td>
-      <td>Monday</td>
-      <td>20</td>
-      <td>18-21</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Mike Mwanje</td>
-      <td>mwanjemike767@gmail.com</td>
-      <td>2023-10-16 20:27:18+00:00</td>
-      <td>Monday</td>
-      <td>20</td>
-      <td>18-21</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Vincent</td>
-      <td>97131062+vincbeck@users.noreply.github.com</td>
-      <td>2023-10-16 19:09:20+00:00</td>
-      <td>Monday</td>
-      <td>19</td>
-      <td>18-21</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>vatsrahul1001</td>
-      <td>43964496+vatsrahul1001@users.noreply.github.com</td>
-      <td>2023-10-16 16:14:42+00:00</td>
-      <td>Monday</td>
-      <td>16</td>
-      <td>15-18</td>
     </tr>
   </tbody>
 </table>
@@ -14598,7 +14599,7 @@ Name: name, dtype: int64
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># generate heatmap</span>
@@ -14619,7 +14620,7 @@ Name: name, dtype: int64
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[58]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
 
 
@@ -14667,79 +14668,79 @@ Name: name, dtype: int64
     <tr>
       <th>Friday</th>
       <td>7</td>
-      <td>25</td>
+      <td>26</td>
       <td>52</td>
-      <td>42</td>
-      <td>47</td>
-      <td>81</td>
-      <td>70</td>
-      <td>40</td>
+      <td>43</td>
+      <td>48</td>
+      <td>86</td>
+      <td>73</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>Monday</th>
       <td>6</td>
       <td>16</td>
-      <td>51</td>
-      <td>56</td>
+      <td>54</td>
+      <td>60</td>
       <td>34</td>
-      <td>43</td>
-      <td>93</td>
-      <td>39</td>
+      <td>46</td>
+      <td>97</td>
+      <td>40</td>
     </tr>
     <tr>
       <th>Saturday</th>
       <td>2</td>
       <td>5</td>
-      <td>48</td>
-      <td>27</td>
-      <td>21</td>
-      <td>33</td>
+      <td>50</td>
+      <td>32</td>
+      <td>24</td>
       <td>39</td>
-      <td>28</td>
+      <td>47</td>
+      <td>31</td>
     </tr>
     <tr>
       <th>Sunday</th>
       <td>0</td>
       <td>10</td>
-      <td>23</td>
-      <td>14</td>
+      <td>24</td>
+      <td>16</td>
       <td>33</td>
-      <td>40</td>
-      <td>44</td>
-      <td>56</td>
+      <td>41</td>
+      <td>46</td>
+      <td>57</td>
     </tr>
     <tr>
       <th>Thursday</th>
-      <td>22</td>
+      <td>23</td>
       <td>24</td>
       <td>46</td>
-      <td>55</td>
+      <td>56</td>
       <td>58</td>
-      <td>63</td>
       <td>64</td>
-      <td>57</td>
+      <td>64</td>
+      <td>66</td>
     </tr>
     <tr>
       <th>Tuesday</th>
       <td>3</td>
       <td>17</td>
-      <td>42</td>
-      <td>45</td>
-      <td>54</td>
+      <td>43</td>
+      <td>46</td>
+      <td>55</td>
       <td>51</td>
-      <td>79</td>
+      <td>81</td>
       <td>58</td>
     </tr>
     <tr>
       <th>Wednesday</th>
-      <td>12</td>
-      <td>20</td>
-      <td>46</td>
-      <td>62</td>
-      <td>35</td>
+      <td>14</td>
+      <td>21</td>
       <td>48</td>
+      <td>66</td>
+      <td>38</td>
+      <td>52</td>
       <td>64</td>
-      <td>50</td>
+      <td>52</td>
     </tr>
   </tbody>
 </table>
